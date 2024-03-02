@@ -140,6 +140,7 @@ public class Main {
         E0000000 80008000""";
     
     static Random random;
+    static long seed;
     
     static String outputDir = "C:/Users/drewp/Documents/cf_bug_rando_output/";
 
@@ -148,7 +149,7 @@ public class Main {
         applyInsectRelOffset(bugBehaviorGhidraAddrs);
         applyInsectRelOffset(bugSpawnConditionSwitchCaseGhidraAddrs);
         
-        long seed = System.currentTimeMillis();
+        seed = System.currentTimeMillis();
         random = new Random(seed);
         int[] ids = randomArray(64);
         
@@ -235,6 +236,14 @@ public class Main {
     
     public static String generateBugRandoCode(int[] ids){
         StringBuilder sb = new StringBuilder();
+        
+        // header info seems necessary for programs like Ocarina's code manager to properly parse
+        // idk if this is 100% correct but it works
+        sb.append("RUUJ01").append("\n");
+        sb.append("Animal Crossing - City Folk (JPN) (Jp)").append("\n\n");
+        
+        // Code title
+        sb.append("Bug Randomizer (seed: ").append(seed).append(") [DrewPag]").append("\n");
         
         sb.append(ALL_BUGS_ALL_YEAR_ALL_DAY_CODE).append("\n");
         sb.append(generateBehaviorCode(ids)).append("\n");
