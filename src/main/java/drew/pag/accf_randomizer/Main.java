@@ -181,7 +181,7 @@ public class Main {
         System.out.println(spawnConditionTotals);
         
         writeOutputFile(bugRandoCode, seed, "RUUJ01.txt");
-        writeOutputFile(bugMapping, seed, "bug_mapping.txt");
+        writeOutputFile(bugMapping, seed, "bug_mappings.txt");
         writeOutputFile(spawnConditionTotals, seed, "spawn_conditions.txt");
     }
     
