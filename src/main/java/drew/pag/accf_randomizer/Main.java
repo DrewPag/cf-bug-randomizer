@@ -139,6 +139,8 @@ public class Main {
         003f03b1 00000000
         E0000000 80008000""";
     
+    static Random random;
+    
     static String outputDir = "C:/Users/drewp/Documents/cf_bug_rando_output/";
 
     public static void main(String[] args) {
@@ -147,7 +149,8 @@ public class Main {
         applyInsectRelOffset(bugSpawnConditionSwitchCaseGhidraAddrs);
         
         long seed = System.currentTimeMillis();
-        int[] ids = randomArray(64, seed);
+        random = new Random(seed);
+        int[] ids = randomArray(64);
         
         System.out.println("seed: " + seed);
         
@@ -277,7 +280,6 @@ public class Main {
      * @param ids - array of IDs to be modified
      */
     public static void replaceBrokenBugBehaviors(int[] ids){
-        Random r = new Random();
         
         for(int i = 0; i < ids.length; i++){
             switch(ids[i]){
@@ -287,9 +289,9 @@ public class Main {
                 // Fly
                 case 0x3b:
                     // re-generate a random ID that is not one of the broken ones and is not flea
-                    int newId = r.nextInt(64);
+                    int newId = random.nextInt(64);
                     while(newId == 0xc || newId == 0x1a || newId == 0x3b || newId == 0x38){
-                        newId = r.nextInt(64);
+                        newId = random.nextInt(64);
                     }
                     ids[i] = newId;
                     break;
@@ -298,8 +300,6 @@ public class Main {
     }
     
     public static void unVanilla(int[] ids){
-        
-        Random r = new Random();
         
         for(int i = 0; i < ids.length; i++){
             final int j = i;
@@ -311,10 +311,10 @@ public class Main {
             if(ids[i] == i){
                 System.out.println("Found vanilla mapping for id " + i);
                 
-                int rand = r.nextInt(64);
+                int rand = random.nextInt(64);
                 final int c = rand;
                 while(Arrays.stream(brokenBugIds).anyMatch(n -> n == c)){
-                    rand = r.nextInt(64);
+                    rand = random.nextInt(64);
                 }
                 
                 int temp = ids[rand];
@@ -332,15 +332,14 @@ public class Main {
         }
     }
     
-    public static int[] randomArray(int length, long seed){
+    public static int[] randomArray(int length){
         int[] result = new int[length];
         for(int i = 0; i < length; i++){
             result[i] = i;
         }
         
-        Random r = new Random(seed);
         for(int j = length - 1; j > 0; j--){
-            int k = r.nextInt(j+1);
+            int k = random.nextInt(j+1);
             int temp = result[j];
             result[j] = result[k];
             result[k] = temp;
