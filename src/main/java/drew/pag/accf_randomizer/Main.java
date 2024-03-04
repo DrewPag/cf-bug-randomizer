@@ -23,7 +23,8 @@ public class Main {
         "Dynastid Beetle", "Atlas Beetle", "Elephant Beetle", "Hercules Beetle", "Goliath Beetle", "Flea", "Pill Bug", "Mosquito",
         "Fly", "Centipede", "Spider", "Tarantula", "Scorpion"};
     
-    public static String[] bugBehaviorGhidraAddrs = new String[]{
+    // I copied these from Ghidra, so they need to have the JP offset applied later...
+    public static String[] JPN_BUG_BEHAVIOR_ADDRS = new String[]{
         "802a6c88", "802a6ca4", "802a6cc0", "802a6cdc", "802a6cf8", "802a6d14", "802a6d30", "802a6d4c", "802a6d68", "802a6d84", "802a6da0",
         "802a6dbc", "802a6dd8", "802a6df4", "802a6e10", "802a6e2c", "802a6e48", "802a6e64", "802a6e80", "802a6e9c", "802a6eb8", "802a6ed4",
         "802a6ef0", "802a6f0c", "802a6f28", "802a6f44", "802a6f60", "802a6f7c", "802a6f98", "802a6fb4", "802a6fd0", "802a6fec", "802a7008",
@@ -32,7 +33,18 @@ public class Main {
         "802a728c", "802a72a8", "802a72c4", "802a72e0", "802a72fc", "802a7318", "802a7334", "802a7350", "802a736c", "802a74cc"
     };
     
-    public static String[] bugSpawnConditionSwitchCaseGhidraAddrs = new String[]{
+    // I copied these from Dolphin memory viewer, so no offset needed
+    public static final String[] USA_BUG_BEHAVIOR_ADDRS = new String[]{
+      "80EFF7EC", "80EFF808", "80EFF824", "80EFF840", "80EFF85C", "80EFF878", "80EFF894", "80EFF8B0", "80EFF8CC", "80EFF8E8", "80EFF904",
+      "80EFF920", "80EFF93C", "80EFF958", "80EFF974", "80EFF990", "80EFF9AC", "80EFF9C8", "80EFF9E4", "80EFFA00", "80EFFA1C", "80EFFA38",
+      "80EFFA54", "80EFFA70", "80EFFA8C", "80EFFAA8", "80EFFAC4", "80EFFAE0", "80EFFAFC", "80EFFB18", "80EFFB34", "80EFFB50", "80EFFB6C",
+      "80EFFB88", "80EFFBA4", "80EFFBC0", "80EFFBDC", "80EFFBF8", "80EFFC14", "80EFFC30", "80EFFC4C", "80EFFC68", "80EFFC84", "80EFFCA0",
+      "80EFFCBC", "80EFFCD8", "80EFFCF4", "80EFFD10", "80EFFD2C", "80EFFD48", "80EFFD64", "80EFFD80", "80EFFD9C", "80EFFDB8", "80EFFDD4",
+      "80EFFDF0", "80EFFE0C", "80EFFE28", "80EFFE44", "80EFFE60", "80EFFE7C", "80EFFE98", "80EFFEB4", "80EFFED0"  
+    };
+    
+    // I copied these from Ghidra, so they need to have the JP offset applied later...
+    public static String[] JPN_BUG_SPAWN_CONDITION_SWITCH_ADDRS = new String[]{
         "80281bc4", "80281bc4", "80281bc4", "80281bc4", "80281bc4", "80281bc4", "80281bc4", "80281be4", "80281bc4", "80281bfc", "80281bac",
         "80281bc4", "80281c04", "80281bcc", "80281bcc", "80281bd4", "80281bd4", "80281bac", "80281bac", "80281bac", "80281bac", "80281bac",
         "80281bdc", "80281bdc", "80281bdc", "80281bdc", "80281c14", "80281be4", "80281be4", "80281bd4", "80281bcc", "80281bcc", "80281bcc",
@@ -41,7 +53,18 @@ public class Main {
         "80281bbc", "80281c1c", "80281bf4", "80281bdc", "80281c0c", "80281bf4", "80281bb4", "80281bec", "80281bec"
     };
     
-    final static int INSECT_REL_OFFSET = 0xc5cca4;
+    // I copied these from Dolphin memory viewer, so no offset needed
+    public static final String[] USA_BUG_SPAWN_CONDITION_SWITCH_ADDRS = new String[]{
+        "80EDA568", "80EDA568", "80EDA568", "80EDA568", "80EDA568", "80EDA568", "80EDA568", "80EDA588", "80EDA568", "80EDA5A0", "80EDA550",
+        "80EDA568", "80EDA5A8", "80EDA570", "80EDA570", "80EDA578", "80EDA578", "80EDA550", "80EDA550", "80EDA550", "80EDA550", "80EDA550",
+        "80EDA580", "80EDA580", "80EDA580", "80EDA580", "80EDA5B8", "80EDA588", "80EDA588", "80EDA578", "80EDA570", "80EDA570", "80EDA570",
+        "80EDA590", "80EDA590", "80EDA550", "80EDA558", "80EDA578", "80EDA5C8", "80EDA5C8", "80EDA5D0", "80EDA588", "80EDA550", "80EDA550",
+        "80EDA550", "80EDA550", "80EDA550", "80EDA550", "80EDA550", "80EDA560", "80EDA560", "80EDA550", "80EDA560", "80EDA560", "80EDA560",
+        "80EDA560", "80EDA5C0", "80EDA598", "80EDA580", "80EDA5B0", "80EDA598", "80EDA558", "80EDA590", "80EDA590"
+    };
+    
+    final static int JP_INSECT_REL_OFFSET = 0xc5cca4;
+    final static int USA_INSECT_REL_OFFSET = 0xC58984;
     
     /**
      * 0, for bugs that fly anywhere (dragonflies + mosquito)
@@ -88,7 +111,7 @@ public class Main {
      */
     final static int[] brokenBugIds = new int[] {0x1a, 0x38};
     
-    public final static String ALL_BUGS_ALL_YEAR_ALL_DAY_CODE = 
+    public final static String JPN_ALL_BUGS_ALL_YEAR_ALL_DAY_CODE = 
         """
         064ed4b0 00000030
         804ed300 804ed300
@@ -139,6 +162,62 @@ public class Main {
         003f03b1 00000000
         E0000000 80008000""";
     
+    public final static String USA_ALL_BUGS_ALL_YEAR_ALL_DAY_CODE = 
+        """
+        064e8650 00000030
+        804e84a0 804e84a0
+        804e84a0 804e84a0
+        804e84a0 804e84a0
+        804e84a0 804e84a0
+        804e84a0 804e84a0
+        804e84a0 804e84a0
+        064e84a0 00000030
+        804e7878 0000003f
+        804e7878 0000003f
+        804e7878 0000003f
+        804e7878 0000003f
+        804e7878 0000003f
+        804e7878 0000003f
+        064e7878 00000100
+        0000000f 0001001e
+        0002002d 0003003c
+        0004004b 0005005a
+        00060069 00070078
+        00080087 00090096
+        000a00a5 000b00b4
+        000c00c3 000d00d2
+        000e00e1 000f00f0
+        001000ff 0011010e
+        0012011d 0013012c
+        0014013b 0015014a
+        00160159 00170168
+        00180177 00190186
+        001b0195 001c01a4
+        001d01b3 001e01c2
+        001f01d1 002001e0
+        002101ef 002201fe
+        0023020d 0024021c
+        0025022b 0026023a
+        00270249 00280258
+        00290267 002a0276
+        002b0285 002c0294
+        002d02a3 002e02b2
+        002f02c1 003002d0
+        003102df 003202ee
+        003302fd 0034030c
+        0035031b 0036032a
+        00370339 00380348
+        00390357 003a0366
+        003b0375 003c0384
+        003d0393 003e03a2
+        003f03b1 00000000
+        E0000000 80008000""";
+    
+    final static String JPN_ACTIVATOR = "20ed9880 00000074";
+    final static String USA_ACTIVATOR = "20ed5580 00000074";
+    
+    static String region = "JPN";
+    
     static Random random;
     static long seed;
     
@@ -146,60 +225,66 @@ public class Main {
 
     public static void main(String[] args) {
         
-        applyInsectRelOffset(bugBehaviorGhidraAddrs);
-        applyInsectRelOffset(bugSpawnConditionSwitchCaseGhidraAddrs);
+        applyJpnInsectRelOffset(JPN_BUG_BEHAVIOR_ADDRS);
+        applyJpnInsectRelOffset(JPN_BUG_SPAWN_CONDITION_SWITCH_ADDRS);
         
-        seed = System.currentTimeMillis();
-        random = new Random(seed);
-        int[] ids = randomArray(64);
         
-        System.out.println("seed: " + seed);
-        
-        printArray(ids);
-        
-        // force broken bugs to be vanilla
-        makeBrokenBugsVanilla(ids);
-        
-        // replace broken bug behaviors
-        replaceBrokenBugBehaviors(ids);
-        
-        // un-vanilla any non-broken vanilla mappings
-        unVanilla(ids);
-        
-        String behaviorCode = generateBehaviorCode(ids);
-        
-        System.out.println("Behavior code: \n" + behaviorCode + "\n");
-        
-        String spawnConditionCode = generateSpawnConditionCode(ids);
-        
-        System.out.println("Spawn condition code: \n" + spawnConditionCode + "\n");
-        
-        String bugRandoCode = generateBugRandoCode(ids);
-        System.out.println("seed: " + seed);
-        System.out.println("Master code: \n" + bugRandoCode);
-        
-        String bugMapping = getBugMapping(ids);
-        System.out.println(bugMapping);
-        
-        String spawnConditionTotals = getSpawnConditionTotals(ids);
-        System.out.println(spawnConditionTotals);
-        
-        writeOutputFile(bugRandoCode, seed, "RUUJ01.txt");
-        writeOutputFile(bugMapping, seed, "bug_mappings.txt");
-        writeOutputFile(spawnConditionTotals, seed, "spawn_conditions.txt");
+//        seed = System.currentTimeMillis();
+//        random = new Random(seed);
+//        int[] ids = randomArray(64, random);
+//        
+//        System.out.println("seed: " + seed);
+//        
+//        printArray(ids);
+//        
+//        // force broken bugs to be vanilla
+//        makeBrokenBugsVanilla(ids);
+//        
+//        // replace broken bug behaviors
+//        replaceBrokenBugBehaviors(ids);
+//        
+//        // un-vanilla any non-broken vanilla mappings
+//        unVanilla(ids);
+//        
+//        String behaviorCode = generateBehaviorCode(ids, region);
+//        
+//        System.out.println("Behavior code: \n" + behaviorCode + "\n");
+//        
+//        String spawnConditionCode = generateSpawnConditionCode(ids, region);
+//        
+//        System.out.println("Spawn condition code: \n" + spawnConditionCode + "\n");
+//        
+//        String bugRandoCode = generateBugRandoCode(ids, region);
+//        System.out.println("seed: " + seed);
+//        System.out.println("Master code: \n" + bugRandoCode);
+//        
+//        String bugMapping = getBugMapping(ids);
+//        System.out.println(bugMapping);
+//        
+//        String spawnConditionTotals = getSpawnConditionTotals(ids);
+//        System.out.println(spawnConditionTotals);
+//        
+//        writeOutputFile(bugRandoCode, seed, region, (region.equals("USA") ? "RUUE01.txt" : "RUUJ01.txt"));
+//        writeOutputFile(bugMapping + "\n\n\n" + spawnConditionTotals, seed, region, "bug_mappings.txt");
+
+        generate100Codes("USA");
+        generate100Codes("JPN");
     }
     
-    public static String generateBehaviorCode(int[] ids){
+    public static String generateBehaviorCode(int[] ids, String region){
+        
+        String[] behaviorAddrs = (region.equals("USA") ? USA_BUG_BEHAVIOR_ADDRS : JPN_BUG_BEHAVIOR_ADDRS);
+        
         StringBuilder sb = new StringBuilder();
         
         // only activate this code when the insect .rel is loaded
-        sb.append("20f01cb4 00b30014").append("\n");
+        sb.append((region.equals("USA") ? USA_ACTIVATOR : JPN_ACTIVATOR)).append("\n");
         
         // starting at address 0x80f04030 write 0x100 = 256 bytes; 4 for each bug's address
-        sb.append("06F04030 00000100").append("\n");
+        sb.append((region.equals("USA") ? "06EFFEF0 00000100" : "06F04030 00000100")).append("\n");
         
         for(int i = 0; i < ids.length; i += 2){
-            sb.append(bugBehaviorGhidraAddrs[ids[i]]).append(" ").append(bugBehaviorGhidraAddrs[ids[i+1]]).append("\n");
+            sb.append(behaviorAddrs[ids[i]]).append(" ").append(behaviorAddrs[ids[i+1]]).append("\n");
 //            if(ids.length - i > 2){
 //                sb.append("\n");
 //            }
@@ -211,21 +296,20 @@ public class Main {
         return sb.toString();
     }
     
-    public static String generateSpawnConditionCode(int[] ids){
+    public static String generateSpawnConditionCode(int[] ids, String region){
+        
+        String[] switchAddrs = (region.equals("USA") ? USA_BUG_SPAWN_CONDITION_SWITCH_ADDRS : JPN_BUG_SPAWN_CONDITION_SWITCH_ADDRS);
+        
         StringBuilder sb = new StringBuilder();
         
         // only activate this code when the insect .rel is loaded
-        sb.append("20f01cb4 00b30014").append("\n");
+        sb.append((region.equals("USA") ? USA_ACTIVATOR : JPN_ACTIVATOR)).append("\n");
         
-        // Ghidra address 802a6ae4 = 80F03788 in RAM is the start of the switch cases
-        sb.append("06F03788 00000100").append("\n");
+        // switch cases start addr = 80EFF648 (USA), 80F03788 (JPN), 
+        sb.append((region.equals("USA") ? "06EFF648 00000100" : "06F03788 00000100")).append("\n");
         
         for(int i = 0; i < ids.length - 1; i += 2){
-            sb.append(bugSpawnConditionSwitchCaseGhidraAddrs[ids[i]]).append(" ")
-                    .append(bugSpawnConditionSwitchCaseGhidraAddrs[ids[i+1]]).append("\n");
-//            if(ids.length - i > 2){
-//                sb.append("\n");
-//            }
+            sb.append(switchAddrs[ids[i]]).append(" ").append(switchAddrs[ids[i+1]]).append("\n");
         }
         
         // terminator
@@ -234,20 +318,25 @@ public class Main {
         return sb.toString();
     }
     
-    public static String generateBugRandoCode(int[] ids){
+    public static String generateBugRandoCode(int[] ids, String region, long seed){
         StringBuilder sb = new StringBuilder();
         
         // header info seems necessary for programs like Ocarina's code manager to properly parse
         // idk if this is 100% correct but it works
-        sb.append("RUUJ01").append("\n");
-        sb.append("Animal Crossing - City Folk (JPN) (Jp)").append("\n\n");
+        if(region.equals("USA")){
+            sb.append("RUUE01").append("\n");
+            sb.append("Animal Crossing - City Folk (USA, Asia) (En,Fr,Es)").append("\n\n");
+        } else{
+            sb.append("RUUJ01").append("\n");
+            sb.append("Animal Crossing - City Folk (JPN) (Jp)").append("\n\n");
+        }
         
         // Code title
-        sb.append("Bug Randomizer (seed: ").append(seed).append(") [DrewPag]").append("\n");
+        sb.append("Bug Randomizer (").append(region).append( ") (seed: ").append(seed).append(") [DrewPag]").append("\n");
         
-        sb.append(ALL_BUGS_ALL_YEAR_ALL_DAY_CODE).append("\n");
-        sb.append(generateBehaviorCode(ids)).append("\n");
-        sb.append(generateSpawnConditionCode(ids));
+        sb.append((region.equals("USA") ? USA_ALL_BUGS_ALL_YEAR_ALL_DAY_CODE : JPN_ALL_BUGS_ALL_YEAR_ALL_DAY_CODE)).append("\n");
+        sb.append(generateBehaviorCode(ids, region)).append("\n");
+        sb.append(generateSpawnConditionCode(ids, region));
         
         return sb.toString();
     }
@@ -287,8 +376,9 @@ public class Main {
      * Fly (0x3b 59) - fly behavior does work for other bugs, but the fly spawn requirement does not... so it would be a strange imbalance
      * 
      * @param ids - array of IDs to be modified
+     * @param random - the random to use (necessary for generate100codes...
      */
-    public static void replaceBrokenBugBehaviors(int[] ids){
+    public static void replaceBrokenBugBehaviors(int[] ids, Random random){
         
         for(int i = 0; i < ids.length; i++){
             switch(ids[i]){
@@ -308,7 +398,7 @@ public class Main {
         }
     }
     
-    public static void unVanilla(int[] ids){
+    public static void unVanilla(int[] ids, Random random){
         
         for(int i = 0; i < ids.length; i++){
             final int j = i;
@@ -321,8 +411,7 @@ public class Main {
                 System.out.println("Found vanilla mapping for id " + i);
                 
                 int rand = random.nextInt(64);
-                final int c = rand;
-                while(Arrays.stream(brokenBugIds).anyMatch(n -> n == c)){
+                while(rand == 0x1a || rand == 0x38){
                     rand = random.nextInt(64);
                 }
                 
@@ -333,15 +422,15 @@ public class Main {
         }
     }
     
-    public static void applyInsectRelOffset(String[] addrs){
+    public static void applyJpnInsectRelOffset(String[] addrs){
         for(int i = 0; i < addrs.length; i++){
             long j = Long.parseLong(addrs[i], 16);
-            j += INSECT_REL_OFFSET;
+            j += JP_INSECT_REL_OFFSET;
             addrs[i] = Long.toHexString(j);
         }
     }
     
-    public static int[] randomArray(int length){
+    public static int[] randomArray(int length, Random random){
         int[] result = new int[length];
         for(int i = 0; i < length; i++){
             result[i] = i;
@@ -395,20 +484,56 @@ public class Main {
         return sb.toString().substring(0, sb.length() - 1);
     }
     
-    public static void writeOutputFile(String data, long seed, String fileName){
+    public static void writeOutputFile(String data, long seed, String region, String fileName){
         Path output = Path.of(outputDir);
-        Path subDir = output.resolve(seed + "/");
-        if(!Files.exists(subDir)){
-            subDir.toFile().mkdir();
+        
+        Path regionSubDir = output.resolve(region + "/");
+        if(!Files.exists(regionSubDir)){
+            regionSubDir.toFile().mkdir();
         }
         
-        File outputFile = subDir.resolve(fileName).toFile();
+        Path seedSubDir = regionSubDir.resolve(seed + "/");
+        if(!Files.exists(seedSubDir)){
+            seedSubDir.toFile().mkdir();
+        }
+        
+        File outputFile = seedSubDir.resolve(fileName).toFile();
         
         try (PrintWriter pw = new PrintWriter(outputFile)) {
             pw.print(data);
+            pw.close();
         } catch(Exception ex){
             System.out.println("Exception writing file " + outputFile.toString());
             ex.printStackTrace();
+        }
+    }
+    
+    private static void generate100Codes(String region){
+        
+        for(int i = 0; i < 100; i++){
+            
+            long newSeed = System.currentTimeMillis();
+            Random newRandom = new Random(newSeed);
+            
+            int[] ids = randomArray(64, newRandom);
+
+            // force broken bugs to be vanilla
+            makeBrokenBugsVanilla(ids);
+
+            // replace broken bug behaviors
+            replaceBrokenBugBehaviors(ids, newRandom);
+
+            // un-vanilla any non-broken vanilla mappings
+            unVanilla(ids, newRandom);
+            
+            String bugRandoCode = generateBugRandoCode(ids, region, newSeed);
+            String bugMapping = getBugMapping(ids);
+            String spawnConditionTotals = getSpawnConditionTotals(ids);
+            
+            writeOutputFile(bugRandoCode, newSeed, region, (region.equals("USA") ? "RUUE01.txt" : "RUUJ01.txt"));
+            writeOutputFile(bugMapping + "\n\n\n" + spawnConditionTotals, newSeed, region, "bug_mappings.txt");
+            
+            System.out.println("Generated code #" + (i+1) + " for region " + region);
         }
     }
     
