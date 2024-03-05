@@ -106,10 +106,11 @@ public class Main {
     /**
      * These bugs break things when given any behavior other than their vanilla behavior
      * 
+     * Bee - 0xc
      * Ant - 0x1a
      * Flea - 0x38
      */
-    final static int[] brokenBugIds = new int[] {0x1a, 0x38};
+    final static int[] brokenBugIds = new int[] {0xc, 0x1a, 0x38};
     
     public final static String JPN_ALL_BUGS_ALL_YEAR_ALL_DAY_CODE = 
         """
@@ -121,45 +122,45 @@ public class Main {
         804ed300 804ed300
         804ed300 804ed300
         064ed300 00000030
-        804ec6d8 0000003f
-        804ec6d8 0000003f
-        804ec6d8 0000003f
-        804ec6d8 0000003f
-        804ec6d8 0000003f
-        804ec6d8 0000003f
+        804ec6d8 0000003e
+        804ec6d8 0000003e
+        804ec6d8 0000003e
+        804ec6d8 0000003e
+        804ec6d8 0000003e
+        804ec6d8 0000003e
         064ec6d8 00000100
-        0000000f 0001001e
-        0002002d 0003003c
-        0004004b 0005005a
-        00060069 00070078
-        00080087 00090096
-        000a00a5 000b00b4
-        000c00c3 000d00d2
-        000e00e1 000f00f0
-        001000ff 0011010e
-        0012011d 0013012c
-        0014013b 0015014a
-        00160159 00170168
-        00180177 00190186
-        001b0195 001c01a4
-        001d01b3 001e01c2
-        001f01d1 002001e0
-        002101ef 002201fe
-        0023020d 0024021c
-        0025022b 0026023a
-        00270249 00280258
-        00290267 002a0276
-        002b0285 002c0294
-        002d02a3 002e02b2
-        002f02c1 003002d0
-        003102df 003202ee
-        003302fd 0034030c
-        0035031b 0036032a
-        00370339 00380348
-        00390357 003a0366
-        003b0375 003c0384
-        003d0393 003e03a2
-        003f03b1 00000000
+        00000010 00010020
+        00020030 00030040
+        00040050 00050060
+        00060070 00070080
+        00080090 000900a0
+        000a00b0 000b00c0
+        000d00d0 000e00e0
+        000f00f0 00100100
+        00110110 00120120
+        00130130 00140140
+        00150150 00160160
+        00170170 00180180
+        00190190 001b01a0
+        001c01b0 001d01c0
+        001e01d0 001f01e0
+        002001f0 00210200
+        00220210 00230220
+        00240230 00250240
+        00260250 00270260
+        00280270 00290280
+        002a0290 002b02a0
+        002c02b0 002d02c0
+        002e02d0 002f02e0
+        003002f0 00310300
+        00320310 00330320
+        00340330 00350340
+        00360350 00370360
+        00380370 00390380
+        003a0390 003b03a0
+        003c03b0 003d03c0
+        003e03d0 003f03e0
+        00000000 00000000
         E0000000 80008000""";
     
     public final static String USA_ALL_BUGS_ALL_YEAR_ALL_DAY_CODE = 
@@ -172,45 +173,45 @@ public class Main {
         804e84a0 804e84a0
         804e84a0 804e84a0
         064e84a0 00000030
-        804e7878 0000003f
-        804e7878 0000003f
-        804e7878 0000003f
-        804e7878 0000003f
-        804e7878 0000003f
-        804e7878 0000003f
+        804e7878 0000003e
+        804e7878 0000003e
+        804e7878 0000003e
+        804e7878 0000003e
+        804e7878 0000003e
+        804e7878 0000003e
         064e7878 00000100
-        0000000f 0001001e
-        0002002d 0003003c
-        0004004b 0005005a
-        00060069 00070078
-        00080087 00090096
-        000a00a5 000b00b4
-        000c00c3 000d00d2
-        000e00e1 000f00f0
-        001000ff 0011010e
-        0012011d 0013012c
-        0014013b 0015014a
-        00160159 00170168
-        00180177 00190186
-        001b0195 001c01a4
-        001d01b3 001e01c2
-        001f01d1 002001e0
-        002101ef 002201fe
-        0023020d 0024021c
-        0025022b 0026023a
-        00270249 00280258
-        00290267 002a0276
-        002b0285 002c0294
-        002d02a3 002e02b2
-        002f02c1 003002d0
-        003102df 003202ee
-        003302fd 0034030c
-        0035031b 0036032a
-        00370339 00380348
-        00390357 003a0366
-        003b0375 003c0384
-        003d0393 003e03a2
-        003f03b1 00000000
+        00000010 00010020
+        00020030 00030040
+        00040050 00050060
+        00060070 00070080
+        00080090 000900a0
+        000a00b0 000b00c0
+        000d00d0 000e00e0
+        000f00f0 00100100
+        00110110 00120120
+        00130130 00140140
+        00150150 00160160
+        00170170 00180180
+        00190190 001b01a0
+        001c01b0 001d01c0
+        001e01d0 001f01e0
+        002001f0 00210200
+        00220210 00230220
+        00240230 00250240
+        00260250 00270260
+        00280270 00290280
+        002a0290 002b02a0
+        002c02b0 002d02c0
+        002e02d0 002f02e0
+        003002f0 00310300
+        00320310 00330320
+        00340330 00350340
+        00360350 00370360
+        00380370 00390380
+        003a0390 003b03a0
+        003c03b0 003d03c0
+        003e03d0 003f03e0
+        00000000 00000000
         E0000000 80008000""";
     
     final static String JPN_ACTIVATOR = "20ed9880 00000074";
@@ -267,8 +268,8 @@ public class Main {
 //        writeOutputFile(bugRandoCode, seed, region, (region.equals("USA") ? "RUUE01.txt" : "RUUJ01.txt"));
 //        writeOutputFile(bugMapping + "\n\n\n" + spawnConditionTotals, seed, region, "bug_mappings.txt");
 
-        generate100Codes("USA");
-        generate100Codes("JPN");
+        generateNCodes("USA", 100);
+        generateNCodes("JPN", 100);
     }
     
     public static String generateBehaviorCode(int[] ids, String region){
@@ -370,9 +371,7 @@ public class Main {
     
     /**
      * Some bug behaviors are broken when you try to apply them to other bugs.
-     * Flea and Ant behaviors are fixed already in another function. The bug behaviors we need to replace are:
-     * Bee (0xc 12) - it actually works great, the bug becomes a swarm of bees and chases you... but once you catch them,
-     *  more swarms continuously chase you until you get stung... and even then, the bee panic music never ends....
+     * Bee, Ant, and Flea behaviors are fixed already in another function. The bug behaviors we need to replace are:
      * Fly (0x3b 59) - fly behavior does work for other bugs, but the fly spawn requirement does not... so it would be a strange imbalance
      * 
      * @param ids - array of IDs to be modified
@@ -383,8 +382,6 @@ public class Main {
         for(int i = 0; i < ids.length; i++){
             switch(ids[i]){
                 
-                // Bee
-                case 0xc:
                 // Fly
                 case 0x3b:
                     // re-generate a random ID that is not one of the broken ones and is not flea
@@ -508,9 +505,9 @@ public class Main {
         }
     }
     
-    private static void generate100Codes(String region){
+    private static void generateNCodes(String region, int numCodes){
         
-        for(int i = 0; i < 100; i++){
+        for(int i = 0; i < numCodes; i++){
             
             long newSeed = System.currentTimeMillis();
             Random newRandom = new Random(newSeed);
