@@ -408,7 +408,7 @@ public class Main {
                 System.out.println("Found vanilla mapping for id " + i);
                 
                 int rand = random.nextInt(64);
-                while(rand == 0x1a || rand == 0x38){
+                while(rand == 0xc || rand == 0x1a || rand == 0x38){
                     rand = random.nextInt(64);
                 }
                 
